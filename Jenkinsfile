@@ -1,10 +1,10 @@
-Pipeline{
+pipeline{
   agent { label 'Slave1' }
   tools{
     jdk 'Java17'
     maven 'Maven3'
   }
-  Stages{
+  stages{
     stage("Cleanup Workspace"){
          steps{
          cleanWs()
