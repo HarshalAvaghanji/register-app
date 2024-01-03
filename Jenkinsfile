@@ -8,8 +8,8 @@ pipeline{
     stage("Cleanup Workspace"){
          steps{
          cleanWs()
-         }
-  }
+      }
+}
     stage("checkout from SCM"){
       steps{
         git branch: 'main', credentialsId: 'github', url: 'https://github.com/HarshalAvaghanji/register-app.git'
@@ -23,6 +23,15 @@ pipeline{
     stage("Test application"){
       steps{
         sh "mvn test"
+      }
+}
+    stage("SonaQube Analysis"){
+      steps{
+        script{
+          withSonarQubeEnv(credentialsId: 'token'){
+                       sh "mvn sonar: sonar"
+          }
+        }
       }
     }
   }
