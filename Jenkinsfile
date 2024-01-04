@@ -28,7 +28,7 @@ pipeline{
     stage("SonaQube Analysis"){
       steps{
         script{
-          withSonarQubeEnv(credentialsId: 'Jenkin-Sonar-qube'){
+          withSonarQubeEnv(credentialsId: 'jenkin-sonar'){
                        sh "mvn sonar: sonar"
           }
         }
